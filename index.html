@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lydia Jin</title>
+<meta name="description" content="Lydia Jin. Computer science and philosophy. Engineering, papers, writing, and music.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fafaf8;
+    --ink: #171a1f;
+    --muted: #646c75;
+    --rule: #e1dfd9;
+    --accent: #7a2e3b;
+    --measure: 36rem;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.0625rem;
+    font-weight: 300;
+    line-height: 1.6;
+    font-optical-sizing: auto;
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible, [role="tab"]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  img { max-width: 100%; height: auto; display: block; }
+
+  .page {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+
+  @media (min-width: 46rem) {
+    .page { padding: 4rem 3rem 7rem; }
+  }
+
+  /* ---------- masthead and tabs ---------- */
+
+  .masthead-name {
+    margin: 0 0 0.3rem;
+    font-size: 1.625rem;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+
+  .masthead-line { margin: 0; color: var(--muted); font-style: italic; }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1.75rem;
+    margin-top: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .tabs a {
+    font-family: "Work Sans", system-ui, sans-serif;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 0.5rem 0;
+    margin-bottom: -1px;
+    border-bottom: 2px solid transparent;
+  }
+
+  .tabs a:hover { color: var(--ink); }
+
+  .tabs a[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+
+  /* ---------- views ---------- */
+
+  .view[hidden] { display: none; }
+  .view { padding-top: 2.75rem; }
+
+  .prose { max-width: var(--measure); }
+  .prose p { margin: 0 0 1.1rem; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .prose a:hover { border-bottom-color: var(--accent); }
+
+  .subhead {
+    font-family: "Work Sans", system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin: 2.75rem 0 1rem;
+  }
+
+  /* ---------- entries ---------- */
+
+  .entries { list-style: none; margin: 0; padding: 0; }
+
+  .entry { padding: 1.25rem 0; border-top: 1px solid var(--rule); }
+  .entry:last-child { border-bottom: 1px solid var(--rule); }
+
+  .entry-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.2rem 1.5rem;
+  }
+
+  .entry-title { margin: 0; font-size: 1.125rem; font-weight: 400; }
+  .entry-title a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .entry-title a:hover { border-bottom-color: var(--accent); }
+
+  .entry-when {
+    font-family: "Work Sans", system-ui, sans-serif;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .entry-where { margin: 0.15rem 0 0; color: var(--muted); font-style: italic; }
+  .entry-note { margin: 0.5rem 0 0; max-width: 54ch; }
+  .entry-note.dim { color: var(--muted); }
+
+  /* ---------- tools ---------- */
+
+  .tools { max-width: var(--measure); margin: 0; }
+
+  .tools dt {
+    font-family: "Work Sans", system-ui, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .tools dd { margin: 0 0 0.9rem; }
+  .tools dd:last-child { margin-bottom: 0; }
+
+  /* ---------- photos and embeds ---------- */
+
+  .portrait { margin: 0 0 2rem; max-width: 15rem; }
+  .portrait img { border-radius: 2px; }
+
+  .gallery { display: grid; gap: 1.5rem; margin: 2rem 0 0; }
+
+  @media (min-width: 46rem) {
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .gallery .wide { grid-column: 1 / -1; }
+  }
+
+  .shot { margin: 0; }
+
+  .shot img { border-radius: 2px; }
+
+  .shot figcaption, .portrait figcaption {
+    margin-top: 0.55rem;
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+
+  .frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #f0efeb;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  .frame-audio { aspect-ratio: auto; height: 27rem; }
+
+  /* ---------- footer ---------- */
+
+  .foot {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: "Work Sans", system-ui, sans-serif;
+    font-size: 0.875rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.75rem;
+  }
+
+  .foot a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .foot a:hover { border-bottom-color: var(--accent); color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <h1 class="masthead-name" id="site-name">Lydia Jin</h1>
+    <p class="masthead-line" id="site-tagline"></p>
+    <nav class="tabs" role="tablist" aria-label="Pages">
+      <a role="tab" href="#/about" data-view="about">About</a>
+      <a role="tab" href="#/engineering" data-view="engineering">Engineering</a>
+      <a role="tab" href="#/philosophy" data-view="philosophy">Philosophy</a>
+      <a role="tab" href="#/writing" data-view="writing">Writing</a>
+      <a role="tab" href="#/music" data-view="music">Music</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="view" id="view-about" tabindex="-1" aria-label="About"></section>
+    <section class="view" id="view-engineering" tabindex="-1" aria-label="Engineering" hidden></section>
+    <section class="view" id="view-philosophy" tabindex="-1" aria-label="Philosophy" hidden></section>
+    <section class="view" id="view-writing" tabindex="-1" aria-label="Writing" hidden></section>
+    <section class="view" id="view-music" tabindex="-1" aria-label="Music" hidden></section>
+    <noscript>
+      <p class="prose">This page needs JavaScript to show its content. Reach me at
+      <a href="mailto:lydiajin01@gmail.com">lydiajin01@gmail.com</a>.</p>
+    </noscript>
+  </main>
+
+  <footer class="foot" id="site-foot"></footer>
+
+</div>
+
+<!-- All editable content lives here. -->
+<script src="content.js"></script>
+
+<script>
+/* Renderer. You should not need to touch this file to change
+   content; edit content.js instead. */
+(function () {
+  var S = window.SITE;
+  if (!S) return;
+
+  function el(tag, className, html) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (html != null) node.innerHTML = html;
+    return node;
+  }
+
+  function paragraphs(list) {
+    var wrap = el('div', 'prose');
+    (list || []).forEach(function (text) { wrap.appendChild(el('p', null, text)); });
+    return wrap;
+  }
+
+  function subhead(text) { return el('p', 'subhead', text); }
+
+  // One list item: title, right-hand label, optional italic
+  // second line, optional description.
+  function entry(item, dim) {
+    var li = el('li', 'entry');
+    var head = el('div', 'entry-head');
+    var title = el('h3', 'entry-title');
+    title.innerHTML = item.url && item.url !== '#'
+      ? '<a href="' + item.url + '">' + item.title + '</a>'
+      : item.title;
+    head.appendChild(title);
+    if (item.when) head.appendChild(el('span', 'entry-when', item.when));
+    li.appendChild(head);
+    if (item.where) li.appendChild(el('p', 'entry-where', item.where));
+    if (item.text) li.appendChild(el('p', 'entry-note' + (dim ? ' dim' : ''), item.text));
+    return li;
+  }
+
+  function entryList(items, dim) {
+    var ul = el('ul', 'entries');
+    (items || []).forEach(function (item) { ul.appendChild(entry(item, dim)); });
+    return ul;
+  }
+
+  function shot(photo, extraClass) {
+    var fig = el('figure', 'shot' + (extraClass ? ' ' + extraClass : ''));
+    var img = document.createElement('img');
+    img.src = photo.src;
+    img.alt = photo.alt || '';
+    img.loading = 'lazy';
+    fig.appendChild(img);
+    if (photo.caption) fig.appendChild(el('figcaption', null, photo.caption));
+    return fig;
+  }
+
+  function embed(src, title, audio) {
+    var fig = el('figure', 'shot');
+    var frame = el('div', 'frame' + (audio ? ' frame-audio' : ''));
+    var iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = title || '';
+    iframe.loading = 'lazy';
+    iframe.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    frame.appendChild(iframe);
+    fig.appendChild(frame);
+    return fig;
+  }
+
+  function gallery(nodes) {
+    if (!nodes.length) return null;
+    var grid = el('div', 'gallery');
+    nodes.forEach(function (node) { grid.appendChild(node); });
+    return grid;
+  }
+
+  function photoNodes(photos) {
+    return (photos || []).filter(function (p) { return p && p.src; }).map(function (p) { return shot(p); });
+  }
+
+  function append(view, node) { if (node) view.appendChild(node); }
+
+  /* ---------- build each view ---------- */
+
+  var views = {};
+
+  views.about = function (view, data) {
+    if (data.photo && data.photo.src) {
+      var portrait = el('figure', 'portrait');
+      var img = document.createElement('img');
+      img.src = data.photo.src;
+      img.alt = data.photo.alt || '';
+      portrait.appendChild(img);
+      if (data.photo.caption) portrait.appendChild(el('figcaption', null, data.photo.caption));
+      view.appendChild(portrait);
+    }
+    append(view, paragraphs(data.paragraphs));
+    append(view, gallery(photoNodes(data.photos)));
+  };
+
+  views.engineering = function (view, data) {
+    append(view, paragraphs(data.intro));
+    if ((data.experience || []).length) {
+      view.appendChild(subhead('Experience'));
+      view.appendChild(entryList(data.experience, false));
+    }
+    if ((data.projects || []).length) {
+      view.appendChild(subhead('Projects'));
+      view.appendChild(entryList(data.projects, true));
+    }
+    if ((data.tools || []).length) {
+      view.appendChild(subhead('Tools'));
+      var dl = el('dl', 'tools');
+      data.tools.forEach(function (row) {
+        dl.appendChild(el('dt', null, row.label));
+        dl.appendChild(el('dd', null, row.value));
+      });
+      view.appendChild(dl);
+    }
+    append(view, gallery(photoNodes(data.photos)));
+  };
+
+  views.philosophy = function (view, data) {
+    append(view, paragraphs(data.intro));
+    if ((data.papers || []).length) {
+      view.appendChild(subhead('Papers'));
+      view.appendChild(entryList(data.papers, true));
+    }
+    append(view, gallery(photoNodes(data.photos)));
+  };
+
+  views.writing = function (view, data) {
+    append(view, paragraphs(data.intro));
+    append(view, entryList(data.items, true));
+    append(view, gallery(photoNodes(data.photos)));
+  };
+
+  views.music = function (view, data) {
+    append(view, paragraphs(data.intro));
+
+    var nodes = [];
+
+    if (data.soundcloud && data.soundcloud.url) {
+      var player = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(data.soundcloud.url) +
+        '&color=%237a2e3b&hide_related=true&show_comments=false&show_teaser=false&show_user=true';
+      var audio = embed(player, 'SoundCloud player', true);
+      audio.className += ' wide';
+      if (data.soundcloud.caption) audio.appendChild(el('figcaption', null, data.soundcloud.caption));
+      nodes.push(audio);
+    }
+
+    (data.videos || []).forEach(function (video) {
+      if (!video || !video.id) return;
+      var frame = embed('https://www.youtube.com/embed/' + video.id, video.title || 'Video');
+      if (video.caption) frame.appendChild(el('figcaption', null, video.caption));
+      nodes.push(frame);
+    });
+
+    photoNodes(data.photos).forEach(function (node) { nodes.push(node); });
+
+    append(view, gallery(nodes));
+  };
+
+  /* ---------- masthead, footer, router ---------- */
+
+  document.getElementById('site-name').textContent = S.name;
+  document.getElementById('site-tagline').textContent = S.tagline;
+
+  var foot = document.getElementById('site-foot');
+  if (S.location) foot.appendChild(el('span', null, S.location));
+  if (S.email) foot.appendChild(el('span', null, '<a href="mailto:' + S.email + '">' + S.email + '</a>'));
+  (S.links || []).forEach(function (link) {
+    foot.appendChild(el('span', null, '<a href="' + link.url + '">' + link.label + '</a>'));
+  });
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var names = tabs.map(function (tab) { return tab.dataset.view; });
+
+  names.forEach(function (name) {
+    var view = document.getElementById('view-' + name);
+    if (views[name] && S[name]) views[name](view, S[name]);
+  });
+
+  function nameFromHash() {
+    var raw = window.location.hash.replace(/^#\/?/, '').split('?')[0];
+    return names.indexOf(raw) > -1 ? raw : names[0];
+  }
+
+  function show(name, moveFocus) {
+    names.forEach(function (key) {
+      document.getElementById('view-' + key).hidden = key !== name;
+    });
+    tabs.forEach(function (tab) {
+      tab.setAttribute('aria-selected', tab.dataset.view === name ? 'true' : 'false');
+    });
+    document.title = name === names[0]
+      ? S.name
+      : S.name + ', ' + name.charAt(0).toUpperCase() + name.slice(1);
+    if (moveFocus) {
+      document.getElementById('view-' + name).focus({ preventScroll: true });
+      window.scrollTo(0, 0);
+    }
+  }
+
+  window.addEventListener('hashchange', function () { show(nameFromHash(), true); });
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('keydown', function (event) {
+      var step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+      if (!step) return;
+      event.preventDefault();
+      var next = tabs[(i + step + tabs.length) % tabs.length];
+      next.focus();
+      window.location.hash = next.getAttribute('href').slice(1);
+    });
+  });
+
+  show(nameFromHash(), false);
+})();
+</script>
+</body>
+</html>
