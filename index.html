@@ -600,6 +600,7 @@
       <button class="tab" role="tab" id="tab-code"     aria-controls="code"     aria-selected="false">Code</button>
       <button class="tab" role="tab" id="tab-music"    aria-controls="music"    aria-selected="false">Music</button>
       <button class="tab" role="tab" id="tab-publicwriting"  aria-controls="publicwriting"  aria-selected="false">Public Writing</button>
+      <button class="tab" role="tab" id="tab-resume"  aria-controls="resume"  aria-selected="false">Resume</button>
     </nav>
 
     <ul class="contact">
@@ -747,7 +748,7 @@
     <section class="panel" id="philosophy" role="tabpanel" aria-labelledby="tab-philosophy" tabindex="-1" hidden>
       <h2>Philosophy</h2>
       <div class="prose">
-        <p>Published, presented, and coursework papers. Please reach out if you are interested in a copy of the works listed.</p>
+        <p>Published, presented, and coursework papers. Please reach out to <a class="email-link" data-show href="#" data-user="contact.lydiajin" data-host="gmail.com">contact.lydiajin [at] gmail [dot] com</a> if you are interested in a copy of the works listed.</p>
       </div>
       <div class="block">
         <div class="grid" id="papers"></div>
@@ -790,6 +791,14 @@
           <a class="btn" href="https://vivalalida.substack.com/" target="_blank" rel="noopener">Read on Substack</a>
         </div>
         <div class="grid" id="posts"></div>
+      </div>
+    </section>
+
+    <!-- ============ RESUME ============ -->
+    <section class="panel" id="resume" role="tabpanel" aria-labelledby="tab-resume" tabindex="-1" hidden>
+      <h2>Resume</h2>
+      <div class="prose">
+        <p>Please email <a class="email-link" data-show href="#" data-user="contact.lydiajin" data-host="gmail.com">contact.lydiajin [at] gmail [dot] com</a> for my resume.</p>
       </div>
     </section>
 
@@ -838,6 +847,21 @@
       title: "Ecstatic time and the shape of a life",
       when: "For Husserl & Heidegger with Timothy Rosenkoetter, June 2026",
       text: "Connects Heidegger\u2019s ecstatic temporality to Velleman\u2019s holism about well-being, using Kundera as the phenomenological lens.",
+    },
+    {
+      title: "Seeing Genderly",
+      when: "For Secondary Qualities with John Kulvicki, March 2026",
+      text: "Applies Mazviita Chirimuuta\u2019s colour adverbialism to gender, treating gender as a mode of perceptual engagement rather than a property we detect, and argues the framework fits gender better than the colour case it was built for.",
+    },
+    {
+      title: "Beauty and Genius in Mathematics (and Chess)",
+      when: "For Kant\u2019s Moral and Aesthetic Philosophies with Timothy Rosenkoetter, March 2026",
+      text: "Strengthens Wenzel\u2019s case against Kant\u2019s exclusion of mathematics from beauty and genius, arguing proofs are art exhibiting adherent beauty, then answers the objection that mathematical geniuses never expand their genre.",
+    },
+    {
+      title: "Expansion of Burman\u2019s Power View to Include Institutions as Agents with Power",
+      when: "For The Social World with Amie Thomasson, November 2025",
+      text: "Argues \u00C5sa Burman\u2019s four kinds of social power all extend to institutions once Bratman\u2019s institutional agency is brought in, and that institutional power is irreducible to individual power \u2014 which is why it carries structural inequality across generations.",
     },
   ];
 
@@ -1052,6 +1076,7 @@
       const address = link.dataset.user + '@' + link.dataset.host;
       link.href = 'mailto:' + address + '?subject=' + encodeURIComponent('Hello from your website');
       link.title = address;
+      if (link.hasAttribute('data-show')) link.textContent = address;
     });
   })();
 
