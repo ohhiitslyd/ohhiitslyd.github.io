@@ -88,45 +88,20 @@
   }
 
   /* ---------- masthead ---------- */
+  /* base rules first, media queries after, so nothing gets overridden */
 
   .masthead { margin-bottom: 2.75rem; }
-
-  @media (min-width: 900px) {
-    .masthead { position: sticky; top: 6rem; margin-bottom: 0; }
-  }
 
   .masthead-top { display: grid; }
 
   .portrait { margin: 0; }
 
-  /* mobile: photo on the right, name and tagline flush against it */
-  @media (max-width: 899px) {
-    .masthead-top {
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 1.6rem;
-    }
-    .identity { grid-column: 1; grid-row: 1; text-align: right; }
-    .portrait { grid-column: 2; grid-row: 1; }
-    .standfirst { margin-left: auto; }
-  }
-
-  /* desktop: photo above the name */
-  @media (min-width: 900px) {
-    .masthead-top { display: block; }
-    .portrait { margin-bottom: 3.5rem; }
-  }
-
   .portrait img {
     display: block;
-    width: 96px;
+    width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 4px;
-  }
-
-  @media (min-width: 900px) {
-    .portrait img { width: 10rem; }
   }
 
   .nameplate {
@@ -136,11 +111,7 @@
     line-height: 1;
     letter-spacing: -0.022em;
     white-space: nowrap;
-    margin: 0 0 0.6rem;
-  }
-
-  @media (min-width: 900px) {
-    .nameplate { font-size: clamp(2.7rem, 4vw, 3.4rem); }
+    margin: 0 0 0.65rem;
   }
 
   .standfirst {
@@ -149,11 +120,47 @@
     font-size: 1rem;
     line-height: 1.4;
     color: var(--ink-soft);
-    max-width: 20ch;
   }
 
+  /* mobile: text and photo each take half the width, split down the middle */
+  @media (max-width: 899px) {
+    .masthead-top {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 1.25rem;
+      align-items: center;
+    }
+
+    .identity {
+      grid-column: 1;
+      grid-row: 1;
+      text-align: right;
+    }
+
+    .portrait {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: start;
+    }
+
+    .portrait img { max-width: 11rem; }
+  }
+
+  /* desktop: photo above the name, in the sidebar */
   @media (min-width: 900px) {
-    .standfirst { font-size: 1.0625rem; }
+    .masthead {
+      position: sticky;
+      top: 6rem;
+      margin-bottom: 0;
+    }
+
+    .masthead-top { display: block; }
+
+    .portrait { margin-bottom: 3.5rem; }
+    .portrait img { width: 10rem; }
+
+    .nameplate { font-size: clamp(2.7rem, 4vw, 3.4rem); }
+
+    .standfirst { font-size: 1.0625rem; max-width: 20ch; }
   }
 
   /* ---------- menu toggle (mobile only) ---------- */
@@ -659,15 +666,17 @@
 
       <div class="embed-stack">
         <!--
-          To feature one track instead of the whole profile: open it on
-          SoundCloud → Share → Embed, paste that iframe here, height="166".
+          This plays the "some of my favorites" playlist in the order you've
+          set on SoundCloud — reorder it there and this follows, no edit needed.
+          To feature a single track instead: open it on SoundCloud → Share →
+          Embed, paste that iframe here, and set height="166".
         -->
         <iframe
           height="450"
           scrolling="no"
           allow="autoplay"
-          title="Lydia Jin on SoundCloud"
-          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/lida-338433305&color=%23175c52&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
+          title="some of my favorites — Lydia Jin on SoundCloud"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/lida-338433305/sets/some-of-my-favorites&color=%23175c52&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe>
       </div>
 
     </section>
@@ -684,7 +693,7 @@
           <h3>Recordings</h3>
           <a class="btn" href="https://soundcloud.com/lida-338433305" target="_blank" rel="noopener">Open SoundCloud</a>
         </div>
-        <p class="embed-fallback">The player is on the home page, or listen on SoundCloud.</p>
+        <p class="embed-fallback">The <em>some of my favorites</em> player is on the home page, or hear everything on SoundCloud.</p>
       </div>
 
       <div class="block">
