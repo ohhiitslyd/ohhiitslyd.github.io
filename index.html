@@ -122,7 +122,8 @@
     color: var(--ink-soft);
   }
 
-  /* mobile: text and photo each take half the width, split down the middle */
+  /* mobile: photo on the left, name and tagline left-aligned beside it,
+     each half the width and sized to fill it */
   @media (max-width: 899px) {
     .masthead-top {
       grid-template-columns: 1fr 1fr;
@@ -130,19 +131,24 @@
       align-items: center;
     }
 
-    .identity {
+    .portrait {
       grid-column: 1;
       grid-row: 1;
-      text-align: right;
-    }
-
-    .portrait {
-      grid-column: 2;
-      grid-row: 1;
-      justify-self: start;
+      justify-self: end;
     }
 
     .portrait img { max-width: 11rem; }
+
+    .identity {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: left;
+    }
+
+    /* scaled to span its column rather than sit small beside the photo */
+    .nameplate { font-size: clamp(2.2rem, 11vw, 3.2rem); }
+
+    .standfirst { font-size: 1.05rem; }
   }
 
   /* desktop: photo above the name, in the sidebar */
