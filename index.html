@@ -125,8 +125,8 @@
   /* mobile: photo on the left, name and tagline left-aligned beside it,
      each half the width and sized to fill it */
   @media (max-width: 899px), (max-height: 820px) {
-    /* the photo and text pair sits centred in the column, with the text itself
-       still left-aligned against the photo */
+    /* the photo and text pair sits centred, with the text left-aligned
+       against the photo */
     .masthead-top {
       grid-template-columns: auto auto;
       justify-content: center;
@@ -260,10 +260,10 @@
   .menu { position: relative; }
 
   @media (max-width: 899px), (max-height: 820px) {
-    /* a narrower, centred measure so the page reads as one column rather than
-       content stranded against the left edge of a wide window */
-    .shell { max-width: 48rem; padding: 2.75rem 1.75rem 3rem; }
-    .site-footer { max-width: 48rem; padding-left: 1.75rem; padding-right: 1.75rem; }
+    /* The column is sized to the reading measure itself, so a centred column
+       means centred paragraphs — the text stays left-aligned inside it. */
+    .shell { max-width: 42rem; padding: 2.75rem 1.75rem 3rem; }
+    .site-footer { max-width: 42rem; padding-left: 1.75rem; padding-right: 1.75rem; }
 
     .menu-toggle { display: flex; }
 
